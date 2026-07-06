@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#f5f5f5] text-gray-800 antialiased font-sans m-0 p-0;
+  }
+}
+
+/* Restore standard browser styles for the WYSIWYG editor overridden by Tailwind */
+.rsw-editor ul {
+  list-style-type: disc !important;
+  margin-left: 1.5rem !important;
+  padding-left: 1rem !important;
+}
+
+.rsw-editor ol {
+  list-style-type: decimal !important;
+  margin-left: 1.5rem !important;
+  padding-left: 1rem !important;
+}
+
+.rsw-editor li {
+  margin-bottom: 0.25rem;
+}
