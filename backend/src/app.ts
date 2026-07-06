@@ -8,7 +8,18 @@ import historyRoutes from './routes/history.routes';
 
 const app = express();
 
-app.use(cors({ origin: config.clientOrigin, credentials: true }));
+app.use(
+  cors({
+    origin: [
+      config.clientOrigin,
+      "https://full-stack-email-job-scheduler-fron.vercel.app",
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "http://localhost:5175",
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json({ limit: '2mb' }));
 
 app.get('/health', (_req, res) => res.json({ ok: true, mode: useMocks ? 'sandbox' : 'production' }));
