@@ -63,19 +63,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const googleLogin = useGoogleLogin({
+  const signIn = useGoogleLogin({
     prompt: "select_account",
     onSuccess: handleSuccess,
     onError: (error) => console.error("Login Failed:", error),
   });
-
-  const signIn = () => {
-    if (import.meta.env.VITE_GOOGLE_CLIENT_ID) {
-      googleLogin();
-    } else {
-      handleSuccess({ access_token: "mock_token_for_demo" });
-    }
-  };
 
   const addAccount = useGoogleLogin({
     prompt: "select_account",
