@@ -12,6 +12,8 @@ app.use(
   cors({
     origin: [
       config.clientOrigin,
+      "https://full-stack-email-job-scheduler-fron.vercel.app",
+      "http://localhost:5173",
       "http://localhost:5174",
       "http://localhost:5175",
     ],
