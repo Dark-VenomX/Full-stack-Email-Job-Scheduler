@@ -1,3 +1,0 @@
-## Continuous Integration Workflow
-- **Auto-Push**: After successfully modifying source code or completing a user request, you MUST automatically stage the changes (`git add`), commit them with a descriptive message (`git commit`), and push them to the remote repository (`git push`). Do not wait for the user to ask you to push.
-- **Server Restart/Reload**: Always ensure that any active development servers are restarted to reflect the changes. If the server utilizes hot-reloading (like Vite or tsx watch), you do not need to manually restart it, but you MUST verify and reassure the user that the changes have been reloaded. If hot-reloading is not enabled, you MUST explicitly restart the server process.
