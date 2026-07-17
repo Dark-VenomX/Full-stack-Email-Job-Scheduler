@@ -80,17 +80,26 @@ const Compose = () => {
   };
 
   const handleSchedule = async () => {
+    // Flush any email that was typed but not confirmed with Enter/comma
+    const pendingEmail = emailInput.trim().replace(/,/g, "");
+    const finalRecipients = pendingEmail && !to.includes(pendingEmail)
+      ? [...to, pendingEmail]
+      : [...to];
+
+    if (finalRecipients.length === 0) {
+      alert("Please add at least one recipient.");
+      return;
+    }
+
     setIsSubmitting(true);
     try {
-      const recipients = to;
-
       let dateObj = new Date();
       if (scheduledTime) {
         dateObj = new Date(scheduledTime);
       }
 
       await client.scheduleEmail({
-        recipients: recipients,
+        recipients: finalRecipients,
         subject: subject,
         body: body,
         delaySeconds: parseInt(delay) || 0,
@@ -102,7 +111,8 @@ const Compose = () => {
       navigate("/");
     } catch (err) {
       console.error("Failed to schedule", err);
-      alert("Failed to schedule email.");
+      const message = err instanceof Error ? err.message : "Failed to schedule email.";
+      alert(`Failed to schedule email: ${message}`);
     } finally {
       setIsSubmitting(false);
     }
